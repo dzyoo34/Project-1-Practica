@@ -1,32 +1,46 @@
+"use client";
+
 import Image from "next/image";
+import { CustomButton } from "@/components";
 
 const Hero = () => {
+  const handleScroll = () => {
+    const nextSection = document.getElementById("discover");
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="hero">
-      <div className="hero__content">
+      <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">
-          Продажа и покупка автомобилей с парковки в Бельцах.
-          Покупка авто в кредит или лизинг на выгодных условиях.
+          Find, book, rent a car—quick and super easy!
         </h1>
-        <p className="hero__subtitle">
-          Мечтай глобально и раскрась эту мечту яркими красками с нашими машинами!
+
+        <p className="hero__subtitle mt-5">
+          Streamline your car rental experience with our effortless booking process.
         </p>
-        <button className="hero__button">Найти машину</button>
+
+        <CustomButton
+          title="Explore Cars"
+          containerStyles="bg-primary-blue text-white rounded-full mt-10"
+          handleClick={handleScroll}
+        />
       </div>
 
-      
-      <div className="hero__image-container">
-        <div className="hero__image">
-          <Image 
-            src="/hero.png" 
-            alt="hero car"
-            width={700}
-            height={500}
-            className="object-contain relative z-10 transform scale-x-[-1]"
-            priority
-          />
+      <div className="hero__image-container relative flex-1 flex justify-end items-end">
+        <div className="hero__image-overlay absolute -top-20 -right-20 w-[600px] h-[350px] bg-primary-blue rounded-full z-[-1]" />
+
+  
+        <div className="hero__image relative w-[500px] h-[300px]">
+          <Image
+            src="/hero.png"
+            alt="hero"
+            width={500}
+            height={300}
+            className="object-contain"/>
         </div>
-        <div className="hero__image-overlay"></div>
       </div>
     </section>
   );
