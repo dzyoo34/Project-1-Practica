@@ -1,19 +1,23 @@
 "use client";
+import { CustomButtonProps } from "@/types";
 
-import { CustomButtonProps } from '@/types';
-import Image from 'next/image';
-
-const CustomButton = ({ title, containerStyles, handleClick, btnType}: CustomButtonProps) => {
+const CustomButton = ({
+  title,
+  containerStyles = "",
+  handleClick,
+  btnType
+}: CustomButtonProps) => {
   return (
     <button
-      disabled={false}
-      type={btnType || "button"}
-      className={`flex justify-center items-center py-3 px-6 outline-none rounded-lg font-medium transition-all ${containerStyles}`} 
+      type={ btnType || "button"}
       onClick={handleClick}
+      aria-label={title}
+      style={{ backgroundColor: "#2B59FF", color: "#ffffff", borderRadius: 9999, padding: "12px 24px" }}
+      className={`transition-colors ${containerStyles}`}
     >
       {title}
     </button>
-  )
-}
+  );
+};
 
-export default CustomButton
+export default CustomButton;
