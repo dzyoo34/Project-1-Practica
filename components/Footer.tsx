@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__links-container">
-        {/* Лого и описание */}
+      
         <div className="footer__rights">
           <Image
             src="/logo.svg"
@@ -21,16 +21,41 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Колонки со ссылками */}
-        <div className="footer__links">
+        
+        <div 
+          className="footer__links"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '2rem',
+            width: '100%'
+          }}
+        >
           {footerLinks.map((link) => (
-            <div key={link.title} className="footer__link">
-              <h3 className="font-bold">{link.title}</h3>
+            <div 
+              key={link.title} 
+              className="footer__link"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem'
+              }}
+            >
+              <h3 
+                className="font-bold text-lg text-gray-900"
+                style={{ marginBottom: '1rem' }}
+              >
+                {link.title}
+              </h3>
               {link.links.map((item) => (
                 <Link
                   key={item.title}
                   href={item.url}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 text-sm transition-colors"
+                  style={{
+                    display: 'block',
+                    marginBottom: '0.5rem'
+                  }}
                 >
                   {item.title}
                 </Link>
@@ -40,7 +65,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Нижняя часть */}
       <div className="footer__copyrights">
         <p>@2025 BaltiCar. All Rights Reserved</p>
         <div className="footer__copyrights-link">
