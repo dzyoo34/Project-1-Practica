@@ -1,8 +1,9 @@
 "use client";
-import { useState } from 'react'
+import { useState } from 'react';
 import Image from 'next/image';
 import { CarProps } from '@/types';
 import CustomButton from './CustomButton';
+import CarDetails from './CarDetails';
 import { calculateCarRent } from '@/utils';
 
 interface CarCardProps {
@@ -11,6 +12,7 @@ interface CarCardProps {
 
 const CarCard = ({ car }: CarCardProps) => {
     const { city_mpg, year, make, model, transmission, drive } = car;
+    const [isOpen, setIsOpen] = useState(false);
 
     const carRent = calculateCarRent(city_mpg, year);
     
@@ -18,51 +20,56 @@ const CarCard = ({ car }: CarCardProps) => {
 
     return (
         <div className="car-card group">
-            {/* Контейнер для изображения с ограничениями */}
-            <div className="car-card__image-container">
-                <Image 
-                    src="/hero.png" 
-                    fill 
-                    priority
-                    alt={`${make} ${model}`}
-                    className="car-card__image"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    onError={(e) => {
-                        e.currentTarget.src = '/car-placeholder.jpg';
-                    }}
-                />
-            </div>
-
             <div className="car-card__content">
                 <h2 className="car-card__content-title">
                     {make} {model}
                 </h2>
-                <p className="car-card__content-year">
-                    {year}
-                </p>
             </div>
 
-            <div className="car-card__price">
-                <span className="car-card__price-amount">
-                    {isValidRent ? `$${carRent}` : 'Price unavailable'}
-                </span>
-                <span className="car-card__price-day">/day</span>
+            <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
+                <span className="self-start text-[14px] leading-[17px] font-semibold">$</span>
+                {isValidRent ? carRent : '0'}
+                <span className="self-end text-[14px] leading-[17px] font-medium">/day</span>
+            </p>
+
+            <div className="relative w-full h-40 my-3 object-contain">
+                <Image 
+                    src="/hero.png" 
+                    alt="car model" 
+                    fill 
+                    priority 
+                    className="object-contain"
+                />
             </div>
-            
-            <div className="car-card__details">
-                <div className="car-card__detail">
-                    <Image src="/steering-wheel.svg" width={20} height={20} alt="Transmission" />
-                    <p>{transmission === 'a' ? 'Automatic' : 'Manual'}</p>
+
+            <div className="relative flex w-full mt-2">
+                <div className="flex group-hover:invisible w-full justify-between text-grey">
+                    <div className="flex flex-col justify-center items-center gap-2">
+                        <Image src="/steering-wheel.svg" width={20} height={20} alt="steering wheel" />
+                        <p className="text-[14px] leading-[17px]">
+                            {transmission === "a" ? "Automatic" : "Manual"}
+                        </p>
+                    </div>
+                    <div className="car-card__icon">
+                        <Image src="/tire.svg" width={20} height={20} alt="seat" />
+                        <p className="car-card__icon-text">{drive?.toUpperCase()}</p>
+                    </div>
+                    <div className="car-card__icon">
+                        <Image src="/gas.svg" width={20} height={20} alt="seat" />
+                        <p className="car-card__icon-text">{city_mpg} MPG</p>
+                    </div>
                 </div>
-                <div className="car-card__detail">
-                    <Image src="/tire.svg" width={20} height={20} alt="Drive" />
-                    <p>{drive.toUpperCase()}</p>
-                </div>
-                <div className="car-card__detail">
-                    <Image src="/gas.svg" width={20} height={20} alt="MPG" />
-                    <p>{city_mpg} MPG</p>
+
+                <div className="car-card__btn-container">
+                    <CustomButton
+                        title="View More"
+                        containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+                        handleClick={() => setIsOpen(true)}
+                    />
                 </div>
             </div>
+
+            <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
         </div>
     );
 }
