@@ -16,7 +16,7 @@
   min-height: 100vh;
   gap: 2.5rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+  background: linear-gradient(135deg, #8e8e8e49 0%, #5a71bc 100%);
 }
 
 @media (min-width: 1280px) {
@@ -29,7 +29,7 @@
   font-size: 3rem;
   font-weight: 800;
   line-height: 1.2;
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #261515 0%, #2b2d18 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -474,4 +474,24 @@
 .empty-state__text {
   font-size: 1.125rem;
   margin-bottom: 1.5rem;
+}
+.search-manufacturer {
+  position: relative;
+  width: 100%;
+}
+
+.search-manufacturer__input {
+  padding-left: 3rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  outline: none;
+}
+
+.search-manufacturer__input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
