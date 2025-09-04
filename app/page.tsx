@@ -1,3 +1,4 @@
+"use client";
 import { CarCard, CustomFilter, SearchBar } from "@/components";
 import  Hero from "@/components/Hero";
 import Image from "next/image";
@@ -16,8 +17,8 @@ export default async function Home() {
         padding-y max-width" id="discover">
           <div className="home__text-container">
             <h1 className="text-4xl
-            font-extrabold">Car Catalogue</h1>
-            <p>Exlpore the cars you might like</p>
+            font-extrabold">Каталог машин</h1>
+            <p>Подберите машину по душе!</p>
             </div>
             <div className="home__filters">
               <SearchBar />
