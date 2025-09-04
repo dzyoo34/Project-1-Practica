@@ -9,7 +9,7 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  title: 'Car Hub',
+  title: 'Balti Car',
   description: 'Dicover the best cars!',
 }
 
