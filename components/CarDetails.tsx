@@ -24,7 +24,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
       leaveFrom="opacity-100"
    leaveTo="opacity-0"
       >
-           <div className="fixed inset-0 bg-black bg-opacity-25" />
+           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
       </Transition.Child>
   <div className="fixed inset-0 overflow-y-auto">
        <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -54,7 +54,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
     </button>
 
     <div className="flex-1 flex flex-col gap-3">
-    <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
+    <div className="relative w-full h-40 rounded-lg bg-blue-500 p-3">
        <Image
          src="/hero.png"
            alt="car model"
